@@ -88,19 +88,17 @@ contract Staking is Ownable {
      * calculate the profit and add it to total Profit,
      * otherwise just add completely new stake. 
      */
-    function stake(uint256 amount_, uint256 packageId_) external {        
+    function stake(uint256 amount_, uint256 packageId_) external {
+        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];       
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
         require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");
-        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
         gold.transferFrom(_msgSender(), address(this), amount_);
         if (stakeTx.amount == 0) {
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
             stakeTx.amount = amount_;
-            stakeTx.totalProfit = 0;
-
-            emit StakeReleased(_msgSender(),)
+            stakeTx.totalProfit = 0;            
         } else {
             stakeTx.totalProfit = calculateProfit(packageId_);
             stakeTx.startTime = block.timestamp;
@@ -108,12 +106,21 @@ contract Staking is Ownable {
             stakeTx.amount += amount_;            
         }      
         
+        emit StakeUpdate(_msgSender(), packageId_, stakeTx.amount, stakeTx.totalProfit);
     }
     /**
      * @dev Take out all the stake amount and profit of account's stake from reserve contract
      */
     function unStake(uint256 packageId_) external {
         // validate available package and approved amount
+        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
+        require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
+        require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
+        require(stakeTx.timePoint <= block.timestamp, "Stakingx: your stake is still in lock time");
+        
+        stakeTx.totalProfit += calculateProfit(packageId_);
+
+        
     }
     /**
      * @dev calculate current profit of an package of user known packageId

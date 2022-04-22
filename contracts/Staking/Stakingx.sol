@@ -3,13 +3,14 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "c:/Users/User/Desktop/solidity-tokenAndNFT/contracts/Reserve/Reserve.sol";
+import "./Reserve.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract Staking is Ownable {
     using Counters for Counters.Counter;
-    Reserve public immutable reserve;
+    StakingReserve public immutable reserve;
     IERC20 public immutable gold;
+    address public reserveAddress; 
     event StakeUpdate(
         address account,
         uint256 packageId,
@@ -47,7 +48,8 @@ contract Staking is Ownable {
      */
     constructor(address tokenAddr_, address reserveAddress_) {
         gold = IERC20(tokenAddr_);
-        reserve = Reserve(reserveAddress_);
+        reserve = StakingReserve(reserveAddress_);
+        reserveAddress = reserveAddress_;
     }
 
     /**
@@ -93,7 +95,7 @@ contract Staking is Ownable {
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
         require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");
-        gold.transferFrom(_msgSender(), address(this), amount_);
+        gold.transferFrom(_msgSender(), reserveAddress, amount_);
         if (stakeTx.amount == 0) {
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
@@ -114,13 +116,18 @@ contract Staking is Ownable {
     function unStake(uint256 packageId_) external {
         // validate available package and approved amount
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
-        require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
-        require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
+        require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");       
         require(stakeTx.timePoint <= block.timestamp, "Stakingx: your stake is still in lock time");
+        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn");
         
         stakeTx.totalProfit += calculateProfit(packageId_);
-
-        
+        uint256 totalAmountTx = stakeTx.amount;
+        uint256 totalProfitTx = stakeTx.totalProfit;
+        stakeTx.amount = 0;
+        stakeTx.totalProfit = 0;
+        reserve.distributeGold(_msgSender(), totalAmountTx + totalProfitTx);
+          
+        emit StakeReleased(_msgSender(), packageId_, totalAmountTx, totalProfitTx);          
     }
     /**
      * @dev calculate current profit of an package of user known packageId

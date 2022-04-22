@@ -91,7 +91,22 @@ contract Staking is Ownable {
     function stake(uint256 amount_, uint256 packageId_) external {        
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
+        require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");
+        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
+        gold.transferFrom(_msgSender(), address(this), amount_);
+        if (stakeTx.amount == 0) {
+            stakeTx.startTime = block.timestamp;
+            stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
+            stakeTx.amount = amount_;
+            stakeTx.totalProfit = 0;
 
+            emit StakeReleased(_msgSender(),)
+        } else {
+            stakeTx.totalProfit = calculateProfit(packageId_);
+            stakeTx.startTime = block.timestamp;
+            stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
+            stakeTx.amount += amount_;            
+        }      
         
     }
     /**
@@ -108,11 +123,19 @@ contract Staking is Ownable {
         public
         view
         returns (uint256)
-    {}
+    {
+        StakePackage memory stakePackage = stakePackages[packageId_];
+        StakingInfo memory stakeTx = stakes[_msgSender()][packageId_];        
+        uint256 profitTx = stakeTx.amount*stakePackage.rate/10**(stakePackage.decimal+2)
+        *(block.timestamp - stakeTx.startTime)/stakePackage.lockTime; 
+        return profitTx;       
+    }
 
     function getAprOfPackage(uint256 packageId_)
         public
         view
         returns (uint256)
-    {}
+    {
+
+    }
 }

@@ -3,25 +3,33 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./Reserve.sol";
+import "./StakingReserve.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract Staking is Ownable {
+contract Stakingx is Ownable {
     using Counters for Counters.Counter;
-    StakingReserve public immutable reserve;
+    StakingReserve public immutable stakingReserve;
     IERC20 public immutable gold;
-    address public reserveAddress; 
+    address public stakingReserveAddress; 
     event StakeUpdate(
-        address account,
-        uint256 packageId,
+        address indexed account,
+        uint256 indexed packageId,
         uint256 amount,
         uint256 totalProfit
     );
     event StakeReleased(
-        address account,
-        uint256 packageId,
+        address indexed account,
+        uint256 indexed packageId,
         uint256 amount,
         uint256 totalProfit
+    );
+    event PackageInfo (
+        uint256 indexed packageId,
+        uint256 rate,
+        uint256 decimal,
+        uint256 minStaking,
+        uint256 lockTime,
+        bool indexed isOffline
     );
     struct StakePackage {
         uint256 rate;
@@ -44,12 +52,12 @@ contract Staking is Ownable {
      * @dev Initialize
      * @notice This is the initialize function, run on deploy event
      * @param tokenAddr_ address of main token
-     * @param reserveAddress_ address of reserve contract
+     * @param stakingReserveAddress_ address of reserve contract
      */
-    constructor(address tokenAddr_, address reserveAddress_) {
+    constructor(address tokenAddr_, address stakingReserveAddress_) {
         gold = IERC20(tokenAddr_);
-        reserve = StakingReserve(reserveAddress_);
-        reserveAddress = reserveAddress_;
+        stakingReserve = StakingReserve(stakingReserveAddress_);
+        stakingReserveAddress = stakingReserveAddress_;
     }
 
     /**
@@ -71,6 +79,8 @@ contract Staking is Ownable {
         stakePackage.minStaking = minStaking_;
         stakePackage.lockTime = lockTime_;
         stakePackage.isOffline = false;
+
+        emit PackageInfo(packageId_, rate_, decimal_, minStaking_, lockTime_, false);
     }
 
     /**
@@ -82,6 +92,8 @@ contract Staking is Ownable {
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         StakePackage storage stakePackage = stakePackages[packageId_];
         stakePackage.isOffline = true;
+
+        emit PackageInfo(packageId_, stakePackage.rate, stakePackage.decimal, stakePackage.minStaking, stakePackage.lockTime, true);
     }
 
     /**
@@ -95,7 +107,7 @@ contract Staking is Ownable {
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
         require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");
-        gold.transferFrom(_msgSender(), reserveAddress, amount_);
+        gold.transferFrom(_msgSender(), stakingReserveAddress, amount_);
         if (stakeTx.amount == 0) {
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
@@ -125,7 +137,7 @@ contract Staking is Ownable {
         uint256 totalProfitTx = stakeTx.totalProfit;
         stakeTx.amount = 0;
         stakeTx.totalProfit = 0;
-        reserve.distributeGold(_msgSender(), totalAmountTx + totalProfitTx);
+        stakingReserve.distributeGold(_msgSender(), totalAmountTx + totalProfitTx);
           
         emit StakeReleased(_msgSender(), packageId_, totalAmountTx, totalProfitTx);          
     }
@@ -138,10 +150,10 @@ contract Staking is Ownable {
         view
         returns (uint256)
     {
-        StakePackage memory stakePackage = stakePackages[packageId_];
-        StakingInfo memory stakeTx = stakes[_msgSender()][packageId_];        
+        StakePackage storage stakePackage = stakePackages[packageId_];
+        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];        
         uint256 profitTx = stakeTx.amount*stakePackage.rate/10**(stakePackage.decimal+2)
-        *(block.timestamp - stakeTx.startTime)/stakePackage.lockTime; 
+        *(block.timestamp - stakeTx.startTime)/(86400*360); 
         return profitTx;       
     }
 
@@ -149,7 +161,12 @@ contract Staking is Ownable {
         public
         view
         returns (uint256)
-    {
+    {}
 
+    function checkAmount(uint256 packageId_) public view returns(uint256) {
+        return stakes[_msgSender()][packageId_].amount;
+    }
+    function checkStarttime(uint256 packageId_) public view returns(uint256) {
+        return stakes[_msgSender()][packageId_].startTime;
     }
 }

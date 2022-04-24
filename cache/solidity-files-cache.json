@@ -1904,8 +1904,8 @@
       ]
     },
     "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\contracts\\Staking\\Stakingx.sol": {
-      "lastModificationDate": 1650718328148,
-      "contentHash": "a396d0f4f2974a1cc5d06054332ad6d5",
+      "lastModificationDate": 1650768859554,
+      "contentHash": "a6fd87903370075e924c58a49cbd0e97",
       "sourceName": "contracts/Staking/Stakingx.sol",
       "solcConfig": {
         "version": "0.8.4",

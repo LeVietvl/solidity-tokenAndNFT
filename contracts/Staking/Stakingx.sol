@@ -102,6 +102,7 @@ contract Stakingx is Ownable {
      * calculate the profit and add it to total Profit,
      * otherwise just add completely new stake. 
      */
+   
     function stake(uint256 amount_, uint256 packageId_) external {
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];       
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
@@ -113,7 +114,7 @@ contract Stakingx is Ownable {
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
             stakeTx.amount = amount_;
             stakeTx.totalProfit = 0;            
-        } else {
+        } else {            
             stakeTx.totalProfit = calculateProfit(packageId_);
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
@@ -130,7 +131,7 @@ contract Stakingx is Ownable {
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");       
         require(stakeTx.timePoint <= block.timestamp, "Stakingx: your stake is still in lock time");
-        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn");
+        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn or not exist");
         
         stakeTx.totalProfit += calculateProfit(packageId_);
         uint256 totalAmountTx = stakeTx.amount;
@@ -150,8 +151,10 @@ contract Stakingx is Ownable {
         view
         returns (uint256)
     {
+        require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");        
         StakePackage storage stakePackage = stakePackages[packageId_];
-        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];        
+        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
+        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn or not exist");       
         uint256 profitTx = stakeTx.amount*stakePackage.rate/10**(stakePackage.decimal+2)
         *(block.timestamp - stakeTx.startTime)/(86400*360); 
         return profitTx;       
@@ -161,12 +164,5 @@ contract Stakingx is Ownable {
         public
         view
         returns (uint256)
-    {}
-
-    function checkAmount(uint256 packageId_) public view returns(uint256) {
-        return stakes[_msgSender()][packageId_].amount;
-    }
-    function checkStarttime(uint256 packageId_) public view returns(uint256) {
-        return stakes[_msgSender()][packageId_].startTime;
-    }
+    {}   
 }

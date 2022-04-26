@@ -75,18 +75,12 @@ describe("staking", function() {
             const stakeTx1 = await staking.connect(staker).stake(amount, 1)
             await expect(stakeTx1).to.be.emit(staking, "StakeUpdate").withArgs(staker.address, 1, amount, 0)
             expect(await gold.balanceOf(staker.address)).to.be.equal(ethers.utils.parseEther("100"))
-            expect(await gold.balanceOf(stakingReserve.address)).to.be.equal(amount.add(stakingReserveBalance))
+            expect(await gold.balanceOf(stakingReserve.address)).to.be.equal(amount.add(stakingReserveBalance))          
+            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1)
+            expect(stakeInfo.isUnStake).to.be.equal(false)
 
-            const blockNum = await ethers.provider.getBlockNumber();
-            const block = await ethers.provider.getBlock(blockNum);            
-            console.log("timestamp1: ", block.timestamp)
-
-            await network.provider.send("evm_increaseTime", [oneDay* 180]);
+            await network.provider.send("evm_increaseTime", [oneDay* 180])
             await network.provider.send('evm_mine', []);
-
-            const blockNum1 = await ethers.provider.getBlockNumber();
-            const block1 = await ethers.provider.getBlock(blockNum1);
-            console.log("timestamp2: ", block1.timestamp) 
 
             const profitTx = amount.mul(10).div(100).mul(oneDay* 180).div(oneDay* 360)              
             expect(await staking.connect(staker).calculateProfit(1)).to.be.equal(profitTx)     
@@ -105,7 +99,7 @@ describe("staking", function() {
             const blockNum = await ethers.provider.getBlockNumber()
             const block = await ethers.provider.getBlock(blockNum)          
             expect(stakeInfo.startTime).to.be.equal(block.timestamp)
-
+            expect(stakeInfo.isUnStake).to.be.equal(false)
         });
     })
 
@@ -125,23 +119,16 @@ describe("staking", function() {
             await network.provider.send('evm_mine', [])
             await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("Stakingx: your stake is still in lock time")              
         }); 
-        // it("should revert if stake is already withdrawn", async function () {
-        //     await network.provider.send("evm_increaseTime", [oneDay* 360])
-        //     await network.provider.send('evm_mine', [])
-        //     await staking.connect(staker).unStake(1)
-        //     await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("Stakingx: your stake is already withdrawn or not exist")              
-        // });
-        it("should unstake correctly", async function () {
+        it("should revert if stake is already withdrawn", async function () {
             await network.provider.send("evm_increaseTime", [oneDay* 360])
             await network.provider.send('evm_mine', [])
-            const unStake1 = await staking.connect(staker).unStake(1)
-            const totalProfit1 = amount.mul(10).div(100)
-            console.log("totalProfit1: ", totalProfit1)
+            await staking.connect(staker).unStake(1)
             const stakeInfo = await staking.connect(staker).stakes(staker.address, 1) 
-            console.log("ProfitTemp: ", stakeInfo.totalProfit) 
-
-            // expect(gold.balanceOf(stakingReserve.address)).to.be.equal(stakingReserveBalance.sub(totalProfit1))
-            // await expect(unStake1).to.be.emit(staking, "StakeReleased").withArgs(staker.address, 1, amount, totalProfit1)
+            console.log(stakeInfo.isUnStake)
+            await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("Stakingx: your stake is already withdrawn")              
+        });
+        it("should unstake correctly when no stake update", async function () {
+            
         });
     })
 

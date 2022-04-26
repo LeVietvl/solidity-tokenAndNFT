@@ -36,13 +36,14 @@ contract Stakingx is Ownable {
         uint256 decimal;
         uint256 minStaking;
         uint256 lockTime;
-        bool isOffline;
+        bool isOffline;        
     }
     struct StakingInfo {
         uint256 startTime;
         uint256 timePoint;
         uint256 amount;
         uint256 totalProfit;
+        bool isUnStake;
     }
     Counters.Counter private _stakePackageCount;
     mapping(uint256 => StakePackage) public stakePackages;
@@ -107,18 +108,20 @@ contract Stakingx is Ownable {
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];       
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");
         require(!stakePackages[packageId_].isOffline, "Stakingx: packageId is not available");
-        require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");
+        require(amount_ >= stakePackages[packageId_].minStaking, "Stakingx: Your stake amount should be greater than minStaking");        
         gold.transferFrom(_msgSender(), stakingReserveAddress, amount_);
         if (stakeTx.amount == 0) {
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
             stakeTx.amount = amount_;
-            stakeTx.totalProfit = 0;            
+            stakeTx.totalProfit = 0;
+            stakeTx.isUnStake = false;            
         } else {            
             stakeTx.totalProfit = calculateProfit(packageId_);
             stakeTx.startTime = block.timestamp;
             stakeTx.timePoint = block.timestamp + stakePackages[packageId_].lockTime;
-            stakeTx.amount += amount_;            
+            stakeTx.amount += amount_; 
+            stakeTx.isUnStake = false;           
         }      
         
         emit StakeUpdate(_msgSender(), packageId_, stakeTx.amount, stakeTx.totalProfit);
@@ -131,16 +134,13 @@ contract Stakingx is Ownable {
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");       
         require(stakeTx.timePoint <= block.timestamp, "Stakingx: your stake is still in lock time");
-        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn or not exist");
+        require(!stakeTx.isUnStake, "Stakingx: your stake is already withdrawn");
         
-        stakeTx.totalProfit += calculateProfit(packageId_);
-        uint256 totalAmountTx = stakeTx.amount;
-        uint256 totalProfitTx = stakeTx.totalProfit;
-        stakeTx.amount = 0;
-        stakeTx.totalProfit = 0;
-        stakingReserve.distributeGold(_msgSender(), totalAmountTx + totalProfitTx);
+        stakeTx.totalProfit += calculateProfit(packageId_);  
+        stakeTx.isUnStake = true;      
+        stakingReserve.distributeGold(_msgSender(), stakeTx.amount + stakeTx.totalProfit);
           
-        emit StakeReleased(_msgSender(), packageId_, totalAmountTx, totalProfitTx);          
+        emit StakeReleased(_msgSender(), packageId_, stakeTx.amount, stakeTx.totalProfit);          
     }
     /**
      * @dev calculate current profit of an package of user known packageId
@@ -154,7 +154,7 @@ contract Stakingx is Ownable {
         require(packageId_ <= _stakePackageCount.current(), "Stakingx: packageId not exist");        
         StakePackage storage stakePackage = stakePackages[packageId_];
         StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
-        require(stakeTx.amount > 0, "Stakingx: your stake is already withdrawn or not exist");       
+        require(!stakeTx.isUnStake, "Stakingx: your stake is already withdrawn");       
         uint256 profitTx = stakeTx.amount*stakePackage.rate/10**(stakePackage.decimal+2)
         *(block.timestamp - stakeTx.startTime)/(86400*360); 
         return profitTx;       

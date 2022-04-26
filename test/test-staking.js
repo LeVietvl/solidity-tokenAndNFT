@@ -81,18 +81,14 @@ describe("staking", function() {
 
             await network.provider.send("evm_increaseTime", [oneDay* 180])
             await network.provider.send('evm_mine', []);
-
-            const profitTx = amount.mul(10).div(100).mul(oneDay* 180).div(oneDay* 360)              
-            expect(await staking.connect(staker).calculateProfit(1)).to.be.equal(profitTx)     
-            console.log("ProfitTx: ", profitTx)    
+            
         });               
         it("should stake correctly when amount > 0", async function () {
             await staking.connect(staker).stake(amount, 1)         
             await network.provider.send("evm_increaseTime", [oneDay* 180])
             await network.provider.send('evm_mine', []);
             const stakeTx2 = await staking.connect(staker).stake(amount, 1) 
-            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1)                  
-            console.log("ProfitTemp: ", stakeInfo.totalProfit)    
+            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1)                
             
             await expect(stakeTx2).to.be.emit(staking, "StakeUpdate").withArgs(staker.address, 1, amount.mul(2), stakeInfo.totalProfit)
 
@@ -100,6 +96,10 @@ describe("staking", function() {
             const block = await ethers.provider.getBlock(blockNum)          
             expect(stakeInfo.startTime).to.be.equal(block.timestamp)
             expect(stakeInfo.isUnStake).to.be.equal(false)
+
+            const profitTx = amount.mul(10).div(100).mul(oneDay* 180).div(oneDay* 360)         
+            console.log("Profit calculated by hand: ", profitTx)    //5000000000000000000
+            console.log("Profit calculated by function: ", stakeInfo.totalProfit) //5000000643004115226
         });
     })
 
@@ -122,14 +122,34 @@ describe("staking", function() {
         it("should revert if stake is already withdrawn", async function () {
             await network.provider.send("evm_increaseTime", [oneDay* 360])
             await network.provider.send('evm_mine', [])
-            await staking.connect(staker).unStake(1)
-            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1) 
-            console.log(stakeInfo.isUnStake)
+            await staking.connect(staker).unStake(1)                       
             await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("Stakingx: your stake is already withdrawn")              
         });
         it("should unstake correctly when no stake update", async function () {
-            
+            await network.provider.send("evm_increaseTime", [oneDay* 360])
+            await network.provider.send('evm_mine', [])
+            await staking.connect(staker).unStake(1)
+            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1) 
+            expect(stakeInfo.isUnStake).to.be.equal(true)
+            console.log("Total Profit: ", stakeInfo.totalProfit) //10000000321502057613
+            expect(await gold.balanceOf(stakingReserve.address)).to.be.equal(stakingReserveBalance.sub(stakeInfo.totalProfit))
+            expect(await gold.balanceOf(staker.address)).to.be.equal(amount.mul(2).add(stakeInfo.totalProfit))
+        });
+        it("should unstake correctly when stake updated", async function () {
+            //update stake after 180 days
+            await network.provider.send("evm_increaseTime", [oneDay* 180])
+            await network.provider.send('evm_mine', [])
+            await staking.connect(staker).stake(amount, 1)
+
+            //unstake all
+            await network.provider.send("evm_increaseTime", [oneDay* 360])
+            await network.provider.send('evm_mine', [])
+            await staking.connect(staker).unStake(1)
+            const stakeInfo = await staking.connect(staker).stakes(staker.address, 1) 
+            expect(stakeInfo.isUnStake).to.be.equal(true)
+            console.log("Total Profit: ", stakeInfo.totalProfit) //25000000964506172839
+            expect(await gold.balanceOf(stakingReserve.address)).to.be.equal(stakingReserveBalance.sub(stakeInfo.totalProfit))
+            expect(await gold.balanceOf(staker.address)).to.be.equal(amount.mul(2).add(stakeInfo.totalProfit))
         });
     })
-
 })

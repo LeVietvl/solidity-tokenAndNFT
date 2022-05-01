@@ -211,9 +211,7 @@ contract Stakingx is Ownable {
         return profitTx;
     }
 
-    function getAprOfPackage(uint256 packageId_)
-        public
-        view
-        returns (uint256)
-    {}
+    function getAprOfPackage(uint256 packageId_) public view returns (uint256) {
+        return stakePackages[packageId_].rate;
+    }
 }

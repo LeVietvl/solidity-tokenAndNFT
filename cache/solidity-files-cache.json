@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\Crownsale\\TokenSale.sol": {
-      "lastModificationDate": 1650943833764,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Crownsale\\TokenSale.sol": {
+      "lastModificationDate": 1650977073817,
       "contentHash": "a998837c7d0e1d81505b8df8aab500af",
       "sourceName": "contracts/Crownsale/TokenSale.sol",
       "solcConfig": {
@@ -39,9 +39,9 @@
         "TokenSale"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1650944173420,
-      "contentHash": "a44d1a099633876550ad2476b21bafbe",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1651239218177,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -74,8 +74,8 @@
         "IERC20"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1650944177411,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1651239221648,
       "contentHash": "8398972af73b4e9e5ff3b31cad86234f",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -111,8 +111,8 @@
         "Ownable"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1650944162871,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1651239208903,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -146,8 +146,8 @@
         "Context"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\tokenNFT\\PettyGachaWaitingTime.sol": {
-      "lastModificationDate": 1650943833806,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\tokenNFT\\PettyGachaWaitingTime.sol": {
+      "lastModificationDate": 1650977073827,
       "contentHash": "651e32325a34592f9bdf7488435d5fd7",
       "sourceName": "contracts/tokenNFT/PettyGachaWaitingTime.sol",
       "solcConfig": {
@@ -186,9 +186,9 @@
         "PettyGachaWaitingTime"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1650944169348,
-      "contentHash": "49295810dc45f300e5f84b4b50d88a59",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
+      "lastModificationDate": 1651239213694,
+      "contentHash": "21b9f3bdb3e60f56ea81361c37420136",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -229,8 +229,8 @@
         "ERC721"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1650944163054,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1651239209023,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -264,9 +264,9 @@
         "Counters"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1650944175314,
-      "contentHash": "27d219ec6f69478d065fdbfa7931da68",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
+      "lastModificationDate": 1651239218643,
+      "contentHash": "cd8e72e5859bddd5fd26b2fb5c51c846",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -301,9 +301,9 @@
         "IERC721"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1650944175870,
-      "contentHash": "592df588492d45fdcf46b3cb608c0fbf",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
+      "lastModificationDate": 1651239219398,
+      "contentHash": "c22d4395e33763de693fd440c6fd10e1",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -336,8 +336,8 @@
         "IERC721Receiver"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1650944175707,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
+      "lastModificationDate": 1651239219309,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -373,8 +373,8 @@
         "IERC721Metadata"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1650944161067,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
+      "lastModificationDate": 1651239207811,
       "contentHash": "ad714a6368ee7d43cded6bbe8af0b155",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -408,8 +408,8 @@
         "Address"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1650944178877,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
+      "lastModificationDate": 1651239222554,
       "contentHash": "9c54c6c065d9e590fdcdd72c451425b9",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -443,8 +443,8 @@
         "Strings"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1650944167040,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
+      "lastModificationDate": 1651239212126,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -480,8 +480,8 @@
         "ERC165"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1650944172852,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1651239217777,
       "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -515,8 +515,8 @@
         "IERC165"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\tokenNFT\\PettyGacha.sol": {
-      "lastModificationDate": 1650943833803,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\tokenNFT\\PettyGacha.sol": {
+      "lastModificationDate": 1650977073827,
       "contentHash": "812b9898684da8b3ab674e5a227b0f1d",
       "sourceName": "contracts/tokenNFT/PettyGacha.sol",
       "solcConfig": {
@@ -555,8 +555,8 @@
         "PettyGacha"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\tokenNFT\\Petty.sol": {
-      "lastModificationDate": 1650943833800,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\tokenNFT\\Petty.sol": {
+      "lastModificationDate": 1650977073826,
       "contentHash": "882471baed9c522af70fa2e24775f04f",
       "sourceName": "contracts/tokenNFT/Petty.sol",
       "solcConfig": {
@@ -594,8 +594,8 @@
         "Petty"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\MarketPlace\\MarketPlace.sol": {
-      "lastModificationDate": 1650943833769,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\MarketPlace\\MarketPlace.sol": {
+      "lastModificationDate": 1650977073818,
       "contentHash": "ba5db22e855df7cf57cdb7f69d35af48",
       "sourceName": "contracts/MarketPlace/MarketPlace.sol",
       "solcConfig": {
@@ -635,9 +635,9 @@
         "MarketPlace"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\utils\\structs\\EnumerableSet.sol": {
-      "lastModificationDate": 1650944165213,
-      "contentHash": "b8070bbbb327a49a4d37f5c590b38238",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\utils\\structs\\EnumerableSet.sol": {
+      "lastModificationDate": 1651239210792,
+      "contentHash": "ee7890ed6993382898aeeed014cffab8",
       "sourceName": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -670,9 +670,9 @@
         "EnumerableSet"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\access\\AccessControl.sol": {
-      "lastModificationDate": 1650944160279,
-      "contentHash": "76cae8e1eb9c27e818b0b08e1527f731",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\access\\AccessControl.sol": {
+      "lastModificationDate": 1651239207622,
+      "contentHash": "08101487003fda67e21e6d2cfe35bb2e",
       "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -710,8 +710,8 @@
         "AccessControl"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\access\\IAccessControl.sol": {
-      "lastModificationDate": 1650944171671,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\access\\IAccessControl.sol": {
+      "lastModificationDate": 1651239216366,
       "contentHash": "57c84298234411cea19c7c284d86be8b",
       "sourceName": "@openzeppelin/contracts/access/IAccessControl.sol",
       "solcConfig": {
@@ -745,8 +745,8 @@
         "IAccessControl"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\security\\Pausable.sol": {
-      "lastModificationDate": 1650944177540,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\security\\Pausable.sol": {
+      "lastModificationDate": 1651239221737,
       "contentHash": "9c2dccab8e3a43a18c41e358763fe4d8",
       "sourceName": "@openzeppelin/contracts/security/Pausable.sol",
       "solcConfig": {
@@ -782,8 +782,8 @@
         "Pausable"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\gold\\Gold.sol": {
-      "lastModificationDate": 1650943833795,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\gold\\Gold.sol": {
+      "lastModificationDate": 1650977073825,
       "contentHash": "a33baf698c4a7a59cd240af5378a73ae",
       "sourceName": "contracts/gold/Gold.sol",
       "solcConfig": {
@@ -821,9 +821,9 @@
         "Gold"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1650944167942,
-      "contentHash": "bab063ddd80e9cc9e313361fef7ef07f",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1651239212692,
+      "contentHash": "a9d2146925da52142435d3bb8df53c3c",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -860,8 +860,8 @@
         "ERC20"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
-      "lastModificationDate": 1650944173699,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1651239218280,
       "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -897,9 +897,9 @@
         "IERC20Metadata"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\Staking\\Stakingx.sol": {
-      "lastModificationDate": 1650946625105,
-      "contentHash": "eab575c5b835a11e8e58bb402ea3ace4",
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Staking\\Stakingx.sol": {
+      "lastModificationDate": 1651366524653,
+      "contentHash": "1424c94bd5b357167423c34a15b885ec",
       "sourceName": "contracts/Staking/Stakingx.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -937,8 +937,8 @@
         "Stakingx"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\Staking\\StakingReserve.sol": {
-      "lastModificationDate": 1650943833787,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Staking\\StakingReserve.sol": {
+      "lastModificationDate": 1650977073823,
       "contentHash": "51b5c3818b4ecdf45b4274495b955717",
       "sourceName": "contracts/Staking/StakingReserve.sol",
       "solcConfig": {
@@ -975,8 +975,8 @@
         "StakingReserve"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\Reserve\\Reserve.sol": {
-      "lastModificationDate": 1650943833774,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Reserve\\Reserve.sol": {
+      "lastModificationDate": 1650977073820,
       "contentHash": "dadf8f05c4c813875389ddcb9a3804d6",
       "sourceName": "contracts/Reserve/Reserve.sol",
       "solcConfig": {
@@ -1013,8 +1013,8 @@
         "Reserve"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\SampleToken\\IERC20.sol": {
-      "lastModificationDate": 1650943833778,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\SampleToken\\IERC20.sol": {
+      "lastModificationDate": 1650977073821,
       "contentHash": "5821206d900b458f6757912ce8d0393b",
       "sourceName": "contracts/SampleToken/IERC20.sol",
       "solcConfig": {
@@ -1048,8 +1048,8 @@
         "IERC20"
       ]
     },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\SampleToken\\SampleToken.sol": {
-      "lastModificationDate": 1650943833782,
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\SampleToken\\SampleToken.sol": {
+      "lastModificationDate": 1650977073821,
       "contentHash": "4cb274f61079b58a1ec4dec5906caf5d",
       "sourceName": "contracts/SampleToken/SampleToken.sol",
       "solcConfig": {
@@ -1084,37 +1084,6 @@
       "artifacts": [
         "SampleToken"
       ]
-    },
-    "C:\\Users\\User\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT\\contracts\\Staking\\Staking.sol": {
-      "lastModificationDate": 1650943833785,
-      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
-      "sourceName": "contracts/Staking/Staking.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
     }
   }
 }

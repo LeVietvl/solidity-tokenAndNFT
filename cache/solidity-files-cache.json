@@ -898,8 +898,8 @@
       ]
     },
     "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Staking\\Stakingx.sol": {
-      "lastModificationDate": 1651366524653,
-      "contentHash": "1424c94bd5b357167423c34a15b885ec",
+      "lastModificationDate": 1651370955708,
+      "contentHash": "d5a915fea81f0bee26bd4fab04ce42ec",
       "sourceName": "contracts/Staking/Stakingx.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -938,8 +938,8 @@
       ]
     },
     "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Staking\\StakingReserve.sol": {
-      "lastModificationDate": 1650977073823,
-      "contentHash": "51b5c3818b4ecdf45b4274495b955717",
+      "lastModificationDate": 1651668399072,
+      "contentHash": "52405c7c937d490cda9c4d564722a6f1",
       "sourceName": "contracts/Staking/StakingReserve.sol",
       "solcConfig": {
         "version": "0.8.4",

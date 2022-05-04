@@ -117,6 +117,14 @@ describe("staking", function () {
             await network.provider.send('evm_mine', [])
             await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("Stakingx: your stake is still in lock time")
         });
+        it("should revert if not enough token in staking Reserve", async function () {
+            await gold.transfer(staker.address, ethers.utils.parseEther("900000"))
+            await gold.connect(staker).approve(staking.address, ethers.utils.parseEther("900000"))
+            await staking.connect(staker).stake(ethers.utils.parseEther("900000"), 1)
+            await network.provider.send("evm_increaseTime", [oneDay * 360])
+            await network.provider.send('evm_mine', [])
+            await expect(staking.connect(staker).unStake(1)).to.be.revertedWith("StakingReserve: Not enough token")
+        });
         it("should unstake correctly when no stake update", async function () {
             await network.provider.send("evm_increaseTime", [oneDay * 360])
             await network.provider.send('evm_mine', [])

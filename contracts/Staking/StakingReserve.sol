@@ -24,6 +24,10 @@ contract StakingReserve is Ownable {
 
     function distributeGold(address _recipient, uint256 _amount) public {
         require(msg.sender == stakeAddress);
+        require(
+            _amount <= getBalanceOfReserve(),
+            "StakingReserve: Not enough token"
+        );
         mainToken.transfer(_recipient, _amount);
     }
 }

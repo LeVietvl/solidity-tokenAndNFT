@@ -73,7 +73,7 @@ contract Stakingx is Ownable {
         _stakePackageCount.increment();
         uint256 packageId_ = _stakePackageCount.current();
         StakePackage storage stakePackage = stakePackages[packageId_];
-        require(rate_ < 10**(decimal_ + 2), "Stakingx: bad  interest rate");
+        require(rate_ > 0, "Stakingx: bad  interest rate");
         stakePackage.rate = rate_;
         stakePackage.decimal = decimal_;
         stakePackage.minStaking = minStaking_;

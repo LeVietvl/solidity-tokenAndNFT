@@ -31,8 +31,8 @@ describe("staking", function () {
     })
 
     describe("add staking package", function () {
-        it("should revert if rate >= 10^(Decimal+2)", async function () {
-            await expect(staking.addStakePackage(101, 0, ethers.utils.parseEther("100"), oneDay * 180)).to.be.revertedWith("Stakingx: bad  interest rate")
+        it("should revert if rate = 0)", async function () {
+            await expect(staking.addStakePackage(0, 0, ethers.utils.parseEther("100"), oneDay * 180)).to.be.revertedWith("Stakingx: bad  interest rate")
         });
         it("should add staking package correctly", async function () {
             const packageTx = await staking.addStakePackage(10, 0, ethers.utils.parseEther("100"), oneDay * 180)

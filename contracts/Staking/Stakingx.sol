@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./StakingReserve.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "hardhat/console.sol";
 
 contract Stakingx is Ownable {
     using Counters for Counters.Counter;
@@ -73,7 +74,7 @@ contract Stakingx is Ownable {
         _stakePackageCount.increment();
         uint256 packageId_ = _stakePackageCount.current();
         StakePackage storage stakePackage = stakePackages[packageId_];
-        require(rate_ > 0, "Stakingx: bad  interest rate");
+        require(rate_ > 0, "Stakingx: bad interest rate");
         stakePackage.rate = rate_;
         stakePackage.decimal = decimal_;
         stakePackage.minStaking = minStaking_;
@@ -203,11 +204,12 @@ contract Stakingx is Ownable {
             packageId_ <= _stakePackageCount.current(),
             "Stakingx: packageId not exist"
         );
-        StakePackage storage stakePackage = stakePackages[packageId_];
-        StakingInfo storage stakeTx = stakes[_msgSender()][packageId_];
-        uint256 profitTx = (((stakeTx.amount * stakePackage.rate) /
-            10**(stakePackage.decimal + 2)) *
-            (block.timestamp - stakeTx.startTime)) / (86400 * 360);
+        StakePackage memory stakePackage = stakePackages[packageId_];
+        StakingInfo memory stakeTx = stakes[_msgSender()][packageId_];
+        uint256 profitTx = (((block.timestamp - stakeTx.startTime) / 86400) *
+            (stakeTx.amount * stakePackage.rate)) /
+            10**(stakePackage.decimal + 2) /
+            360;
         return profitTx;
     }
 

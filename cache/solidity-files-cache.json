@@ -898,8 +898,8 @@
       ]
     },
     "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\contracts\\Staking\\Stakingx.sol": {
-      "lastModificationDate": 1651893824679,
-      "contentHash": "aa1977623ac0a6db76ae87e61fd5e8e4",
+      "lastModificationDate": 1652191689771,
+      "contentHash": "8ae8c0c5e653ca4a0a97babd14472143",
       "sourceName": "contracts/Staking/Stakingx.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -928,7 +928,8 @@
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
         "./StakingReserve.sol",
-        "@openzeppelin/contracts/utils/Counters.sol"
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.8.4"
@@ -1083,6 +1084,41 @@
       ],
       "artifacts": [
         "SampleToken"
+      ]
+    },
+    "C:\\Users\\Boss1628\\Desktop\\solidity-tokenAndNFT\\solidity-tokenAndNFT-1\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1651239235275,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }
